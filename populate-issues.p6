@@ -18,7 +18,8 @@ sub body-template($module) {
 }
 
 multi MAIN(‘I know what I'm doing’, $token, *@dbs) {
-    for red-modules(@dbs).keys.sort[^20] {
+    # ⚠ TODO ↓ change before the final run
+    for red-modules(@dbs).keys.sort.reverse[^20] {
         submit-issue :$token,
                      title => $_,
                      body  => body-template $_,;
