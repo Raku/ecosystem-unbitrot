@@ -11,6 +11,7 @@ sub body-template($module) {
     * You can close the issue only if the module passes its tests and is installable.
     * If you can install it without any issues, label this ticket with `works for me` and close the issue.
     * If it needs a native library, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request). If everything is green you can close the issue.
+    * If the module is broken, try to fix it and send a PR. Add `PR sent` label and close the issue.
 
     If you can't attach a label or close the ticket, please let us know on #perl6 channel on freenode, or just leave a comment here. We will try to give you priveleges as fast as possible.
     TEMPLATE
