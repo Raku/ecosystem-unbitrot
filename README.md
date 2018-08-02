@@ -1,6 +1,6 @@
 # Unbitrot the ecosystem: Squashathon instructions
 
-Helper repo to work on perl6 modules during bitrot squashathons. The main intention of this squashathon is to work on ecosystem modules which, for some reason, are failing; our objective is to find whatever errors cause the tests to fail with current Perl 6 implementations, and do a pull-request to the original site that will help the author publish a new, working, version.
+Helper repo to work on perl6 modules during [bitrot squashathons](https://twitter.com/zoffix/status/1022879125923672066). The main intention of this squashathon is to work on ecosystem modules which, for some reason, are failing; our objective is to find whatever errors cause the tests to fail with current Perl 6 implementations, and do a pull-request to the original site that will help the author publish a new, working, version.
 
 Here are a few instructions that will help you through the hackathon.
 
