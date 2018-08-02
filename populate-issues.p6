@@ -1,5 +1,6 @@
 #!/usr/bin/env perl6
 
+use JSON::Fast;
 # ⚠ TODO ↓ change before the final run
 my $repo = ‘AlexDaniel/my-test-repo’;
 my $url  = “https://api.github.com/repos/$repo/issues”;
@@ -20,9 +21,10 @@ sub body-template($module) {
 multi MAIN(‘I know what I'm doing’, $token, *@dbs) {
     # ⚠ TODO ↓ change before the final run
     for red-modules(@dbs).keys.sort.reverse[^20] {
-        submit-issue :$token,
+	my $number = submit-issue :$token,
                      title => $_,
                      body  => body-template $_,;
+	say "$number, $_";
     }
 }
 
@@ -63,7 +65,9 @@ sub submit-issue(:$token, :$title, :$body, :@labels) {
           ],
           content-type => ‘application/json’,
           body => %body,
-          ;
+    ;
 
     say await $resp.body;
+    my $response = from-json $resp.body;
+    return $response{'number'}; #Issue number
 }
