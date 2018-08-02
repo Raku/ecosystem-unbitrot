@@ -9,7 +9,7 @@ sub body-template($module) {
     qq:to/TEMPLATE/
     Module [$module](https://modules.perl6.org/dist/$module) is failing its tests and/or does not install.
 
-    * You can close the issue only if the module passes its tests and is installable.
+    * Please close the issue only if the module passes its tests and is installable.
     * If you can install it without any issues, label this ticket with `works for me` and close the issue.
     * If it needs a native library, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request). If everything is green you can close the issue.
     * If the module is broken, try to fix it and send a PR. Add `PR sent` label and close the issue.
