@@ -6,7 +6,7 @@ Here are a few instructions that will help you through the hackathon.
 
 1. Get into the #perl6 IRC channel to discuss with other people participating in the hackathon, and get updates of what's being done. Every time something is done in the squashathon, a friendly bot will send a message to that channel. You can use it also to coordinate with the rest of the participants, get help and, of course, give help.
 
-2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues). These issues will be populated with the modules that are currently failing. Choose one to work on, and *tell everyone* by commenting on the issue. That way you signal to other people that might be working on it. Put, for instance, what kind of error it is, if it depends on other module, and so on. If it depends on other module that it failing, *that should also have an issue*; if it does not exist yet, create it. 
+2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues). These issues will be populated with the modules that are currently failing. Choose one to work on, and *tell everyone* by commenting on the issue. That way you signal to other people that might be working on it. Put, for instance, what kind of error it is, if it depends on other module, and so on. If it depends on other module that is failing, *that should also have an issue*; if it does not exist yet, create it. 
 
 3. It might be the case that it's not a real error, but one caused by the non-existence of some dependent non-Perl 6 library in the machine that is doing the test. Please indicate so, and close the issue.
 
