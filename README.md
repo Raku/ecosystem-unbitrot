@@ -13,3 +13,39 @@ Here are a few instructions that will help you through the hackathon.
 ## How to choose the issue/module
 
 You can take whichever issue you want, provided someone else has not indicated she's working on it before. But not all failures have the same impact, since not all modules have the same number of dependent distributions *downstream*. This [*river* table indicates how many dependencies every module has](https://github.com/JJ/p6-river/blob/master/data/river-scores.csv), and also if it fails. The higher the score, the higher the impact when it's fixed; also higher the chance some "downriver" modules fail, but only because these "upriver" modules fail to install. There are many modules that fail tests, but by fixing these *upriver* modules the domino effect might make some others to just start working.
+
+## Tips if you can't get the module to fail
+
+Before assuming the module works fine for you, check that:
+
+#### Check you've set all env vars that enable module's extra tests
+
+Some modules have optional tests that only run when some env var is set (e.g. `NETWORK_TESTING` or `ONLINE_TESTING`). The test suite's messages will usually tell you about this, but you need to run it in verbose mode:
+
+    $ prove -e "perl6 -Ilib" -vr t/
+    [...]
+    ok 4 - # SKIP NETWORK_TESTING was not set
+    [...]
+   
+Set the env var and re-try the test:
+
+    $ NETWORK_TESTING=1 prove -e "perl6 -Ilib" -vr t/
+
+#### Check you've got all the optional modules
+
+Same as above, except a module may be looking for optional modules:
+
+    $ prove -e "perl6 -Ilib" -vr t/
+    [...]
+    ok 1 - # SKIP 'Compress::Zlib' not installed won't test
+    [...]
+   
+Install the optional module and re-try the test:
+    
+    $ zef install Compress::Zlib
+    [...]
+    $ prove -e "perl6 -Ilib" -vr t/
+
+**Check you didn't have some of the prerequisites installed**
+
+A module missing from `requires` will cause an install failure, but it won't be noticable for you if you already have that missing module installed. You can uninstall modules with `zef uninstall Foo`
