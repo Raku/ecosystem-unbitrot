@@ -1,30 +1,29 @@
 #!/usr/bin/env perl6
 
-use JSON::Fast;
-# ⚠ TODO ↓ change before the final run
-my $repo = ‘AlexDaniel/my-test-repo’;
+my $repo = ‘perl6/ecosystem-unbitrot’;
 my $url  = “https://api.github.com/repos/$repo/issues”;
 
 sub body-template($module) {
     qq:to/TEMPLATE/
     Module [$module](https://modules.perl6.org/dist/$module) is failing its tests and/or does not install.
 
-    * Please close the issue only if the module passes its tests and is installable.
-    * If you can install it without any issues, label this ticket with `works for me` and close the issue.
-    * If it needs a native library, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request). If everything is green you can close the issue.
-    * If the module is broken, try to fix it and send a PR. Add `PR sent` label and close the issue.
+    * Please close this issue only if the module **passes its tests and is installable**. One way to test it is to run `zef install MODULENAME`.
+    * If you can **install the module without any problems**, label this ticket with `works for me` and close the issue.
+    * If it **needs a native library**, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request). If everything is green you can close the issue.
+    * If the **module is broken**, try to fix it and send a PR. Add `PR sent` label and close the issue.
+    * If there is a **problem in one of the dependencies**, add `failing dependency` label and write a comment explaining the situation. Leave this ticket open and feel free to work on the corresponding ticket for the failing dependency.
+    * It is a good idea to **assign yourself** to this ticket if you're working on it (to make sure two or more people are not working on the same ticket at the same time).
 
-    If you can't attach a label or close the ticket, please let us know on #perl6 channel on freenode, or just leave a comment here. We will try to give you priveleges as fast as possible.
+    If you can't self-assign, attach a label, or close the ticket, please let us know on [#perl6 channel on freenode](https://perl6.org/irc) or just leave a comment here. We will try to give you priveleges as fast as possible.
     TEMPLATE
 }
 
 multi MAIN(‘I know what I'm doing’, $token, *@dbs) {
-    # ⚠ TODO ↓ change before the final run
-    for red-modules(@dbs).keys.sort.reverse[^20] {
-	my $number = submit-issue :$token,
+    for red-modules(@dbs).keys.sort.reverse {
+        my $number = submit-issue :$token,
                      title => $_,
                      body  => body-template $_,;
-	say "$number, $_";
+        put “$number, $_”;
     }
 }
 
@@ -67,7 +66,5 @@ sub submit-issue(:$token, :$title, :$body, :@labels) {
           body => %body,
     ;
 
-    say await $resp.body;
-    my $response = from-json $resp.body;
-    return $response{'number'}; #Issue number
+    return (await $resp.body)<number> # issue number
 }
