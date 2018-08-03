@@ -6,7 +6,7 @@ Here are a few instructions that will help you through the hackathon.
 
 1. Get into the [#perl6 IRC channel](https://perl6.org/irc) to discuss with other people participating in the hackathon, and get updates of what's being done. Every time something is done in the squashathon, a friendly bot will send a message to that channel. You can use it also to coordinate with the rest of the participants, get help and, of course, give help.
 
-2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues). These issues are populated before the squashathon with the modules that are currently failing. Choose one to work on, and follow the instructions presented in that issue.
+2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues). These issues are populated before the squashathon with the modules that are currently failing. Choose one to work on, and follow the instructions presented in that issue. The list includes false positives, so it is OK to use `works for me` label often.
 
 3. When you're done, go to another issue!
 
