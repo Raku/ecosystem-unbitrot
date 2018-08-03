@@ -48,6 +48,8 @@ sub red-modules(@dbs) {
         $dbh.dispose;
 
         my %c = @rows.classify: { .[1] eq ‘Succ’ ?? ‘good’ !! ‘bad’ };
+        # ↓ ⚠ TODO possibly buggy, see
+        # ↓ http://colabti.org/irclogger/irclogger_log/perl6?date=2018-08-03#l1048
         $red ∪= %c<bad>».[0];
         $red ∖= %c<good>».[0];
     }
