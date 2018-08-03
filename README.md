@@ -31,7 +31,7 @@ Set the env var and re-try the test:
 
     $ NETWORK_TESTING=1 prove -e "perl6 -Ilib" -vr t/
 
-#### Check you've got all the optional modules
+#### Check you've all the optional modules
 
 Same as above, except a module may be looking for optional modules:
 
