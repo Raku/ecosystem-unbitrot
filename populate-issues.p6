@@ -24,6 +24,7 @@ multi MAIN(‘I know what I'm doing’, $token, *@dbs) {
                      title => $_,
                      body  => body-template $_,;
         put “$number, $_”;
+        sleep 5;
     }
 }
 
