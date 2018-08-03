@@ -26,7 +26,7 @@ Some modules have optional tests that only run when some env var is set (e.g. `N
     [...]
     ok 4 - # SKIP NETWORK_TESTING was not set
     [...]
-   
+
 Set the env var and re-try the test:
 
     $ NETWORK_TESTING=1 prove -e "perl6 -Ilib" -vr t/
@@ -39,9 +39,9 @@ Same as above, except a module may be looking for optional modules:
     [...]
     ok 1 - # SKIP 'Compress::Zlib' not installed won't test
     [...]
-   
+
 Install the optional module and re-try the test:
-    
+
     $ zef install Compress::Zlib
     [...]
     $ prove -e "perl6 -Ilib" -vr t/
