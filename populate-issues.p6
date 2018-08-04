@@ -1,5 +1,8 @@
 #!/usr/bin/env perl6
 
+# example usage:
+#   ./populate-issues.p6 "I know what I'm doing" YOUR-ACCESS-TOKEN 6lang.sqlite.db party.sqlite.db > issue-mapping
+
 my $repo = ‘perl6/ecosystem-unbitrot’;
 my $url  = “https://api.github.com/repos/$repo/issues”;
 
