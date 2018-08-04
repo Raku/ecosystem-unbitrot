@@ -17,7 +17,7 @@ sub body-template($module) {
     * If there is a **problem in one of the dependencies**, add `failing dependency` label and write a comment explaining the situation. Leave this ticket open and feel free to work on the corresponding ticket for the failing dependency.
     * It is a good idea to **assign yourself** to this ticket if you're working on it (to make sure two or more people are not working on the same ticket at the same time).
 
-    If you can't self-assign, attach a label, or close the ticket, please let us know on [#perl6 channel on freenode](https://perl6.org/irc) or just leave a comment here. We will try to give you priveleges as fast as possible.
+    If you can't self-assign, attach a label, or close the ticket, please let us know on [#perl6 channel on freenode](https://perl6.org/irc) or just leave a comment here. We will try to give you privileges as fast as possible.
     TEMPLATE
 }
 
