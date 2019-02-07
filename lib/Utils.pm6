@@ -1,3 +1,5 @@
+use v6;
+
 unit module Utils;
 
 constant \url = “https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?state=all”;
@@ -24,4 +26,9 @@ sub get-issues($token) is export {
         last
     }
     @tickets
+}
+
+#| Returns failing modules
+sub modules-not-ok( $file = "data/blin-output.txt" ) is export {
+    $file.IO.slurp.lines.grep(  / \– \s+ <!before OK>/ ).map( (*.words)[0] );
 }

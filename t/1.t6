@@ -7,6 +7,9 @@ use Utils;
 
 ok Utils::url, "{Utils::url} is declared";
 
+my $file = "data/blin-output.txt".IO.e??"data/blin-output.txt"!!"../data/blin-output.txt";
+my @not-ok-modules = modules-not-ok( $file );
+ok @not-ok-modules, "Some modules are not OK";
 if %*ENV{'GH_TOKEN'} {
     my @tickets = get-issues( %*ENV{'GH_TOKEN'} );
     ok @tickets, "Downloads tickets";
