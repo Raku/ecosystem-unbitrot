@@ -1,0 +1,16 @@
+#!/usr/bin/env perl6
+
+use v6;
+
+use Test;
+use Utils;
+
+ok Utils::url, "{Utils::url} is declared";
+
+if %*ENV{'GH_TOKEN'} {
+    my @tickets = get-issues( %*ENV{'GH_TOKEN'} );
+    ok @tickets, "Downloads tickets";
+    cmp-ok @tickets.elems, ">", 1, "There are tickets";
+} else {
+    skip "No token for issues",1;
+}

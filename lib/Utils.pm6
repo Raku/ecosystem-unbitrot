@@ -1,9 +1,11 @@
 unit module Utils;
 
+constant \url = “https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?state=all”;
 
-sub get-issues($url,$token) is export {
+#| gets the issues from the repo
+sub get-issues($token) is export {
     my @tickets;
-    my $cur-url = $url;
+    my $cur-url = url;
     loop {
         note $cur-url;
         use Cro::HTTP::Client;
