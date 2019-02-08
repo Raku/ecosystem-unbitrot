@@ -8,7 +8,7 @@ Here are a few instructions that will help you through the hackathon.
 
 2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+-label%3A%22PR+sent%22+-label%3A%22deprecated+module%22+-label%3A%22native+dependency%22). These issues are populated before the squashathon with the modules that are currently failing. Choose one to work on, and follow the instructions presented in that issue. The list includes false positives, so it is OK to use `works for me` label often.
 
-3. When you're done, go to another issue!
+3. When you're done, go to another issue! Note that **issues are closed automatically**, do not close issues yourself (just adding a label is enough).
 
 
 ## Tips if you can't get the module to fail
