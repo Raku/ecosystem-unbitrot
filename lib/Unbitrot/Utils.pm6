@@ -6,8 +6,8 @@ use Cro::HTTP::Client;
 
 constant \url = ‘https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?per_page=60&direction=asc&state=all’;
 
-#| gets the issues from the repo
-sub get-issues($token) is export {
+#| Returns all issues from the repo
+sub get-issues(:$token, :$url = url) is export {
     my @issues;
     my $cur-url = url;
     loop {
@@ -29,21 +29,24 @@ sub get-issues($token) is export {
     @issues;
 }
 
-#| Edit issue
+#| Close/Open an issue
 sub close-single-issue($url, $token, :$state = 'closed') is export {
     patch( :$url, :$token, body => { :$state } ),
 }
 
-#| patch with cro
-sub patch(:$url, :$token, :$body ) {
+#| Submit a new issue
+sub submit-issue(:$token, :$title, :$body, :@labels, :$url = url) {
+    my %body = %(:$title, :$body, :@labels,);
 
-    my $resp = await Cro::HTTP::Client.patch: $url,
+    use Cro::HTTP::Client;
+    my $resp = await Cro::HTTP::Client.post: $url,
           headers => [
               User-Agent => ‘perl6 ecosystem unbitrot’,
               Authorization => “token $token”,
-                  ],
+          ],
           content-type => ‘application/json’,
-          body => $body,
+          body => %body,
     ;
-    return await $resp.body;
+
+    return (await $resp.body)<number> # issue number
 }

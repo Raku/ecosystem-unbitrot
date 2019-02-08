@@ -12,7 +12,7 @@ unit sub MAIN(
 
 
 my %modules = from-json slurp $blin-data;
-my @issues = get-issues $token;
+my @issues = get-issues :$token;
 my $template-text = slurp $template;
 
 for @issues -> $issue {
@@ -25,21 +25,27 @@ for %modules.keys.sort -> $name {
     if $module<status> eq ‘OK’ {
         if $ticket and $ticket<state> ne ‘closed’ {
             note “Closing issue {$ticket<number>} for $name”;
-            # close-single-issue $ticket<url>, $token
+            # close-single-issue $ticket<url>, :$token
         }
     } else {
         if not $ticket or $ticket<state> eq ‘closed’ {
             note “Creating new issue for $name”;
 
-            my $text = $template-text;
-            $text .= subst: ‘｢MODULE｣’, 42;
-            $text .= subst: ‘｢MODULE-URL｣’, 42; # https://modules.perl6.org/dist/$module
-            $text .= subst: ‘｢OUTPUT｣’, 42;
-            $text .= subst: ‘｢PING-AUTHOR｣’, 42;
-            $text .= subst: ‘｢PREVIOUS-TICKET｣’, 42;
-	    $text .= subst: ‘｢PREVIOUS-TICKET｣’, 42;
-	    $text .= subst: ‘｢BLIN-MESSAGE｣’, 42;
-            # submit-issue $token, $text
+            my $title = $name;
+            my @labels;
+            my $body = $template-text;
+            my $ping-author = False ?? ‘Ping @AlexDaniel.’ !! ‘’;
+            my $previous-ticket = $ticket ?? ‘Preivous ticket: #’ ~ $ticket<number> !! ‘’;
+
+            $body .= subst: ‘｢MODULE｣’, $name;
+            $body .= subst: ‘｢MODULE-URL｣’, “https://modules.perl6.org/dist/$module”;
+            $body .= subst: ‘｢BLIN-MESSAGE｣’, $module<status>;
+            $body .= subst: ‘｢OUTPUT｣’, $module<output>;
+            $body .= subst: ‘｢PING-AUTHOR｣’, $ping-author;
+            $body .= subst: ‘｢PREVIOUS-TICKET｣’, $previous-ticket;
+
+            # submit-issue(:$token, :$title, :$body, :@labels);
+
         }
     }
 }
