@@ -21,6 +21,17 @@ for @issues -> $issue {
     .<ticket> = $issue with %modules{$issue<title>};
 }
 
+for @($module-metadata<dists>) -> $metadata {
+    my $module = %modules{$metadata<name>};
+    next unless $module;
+    $module<metadata> = $metadata;
+    my $author = Nil;
+    if $metadata<repo_url> ~~ /‘github.com/’(<[\w-]>+)‘/’/ {
+        $author = ~$0;
+    }
+    $module<author> = $author;
+}
+
 for %modules.keys.sort -> $name {
     my $module = %modules{$name};
     my $ticket = $module<ticket>;
@@ -36,8 +47,8 @@ for %modules.keys.sort -> $name {
             my $title = $name;
             my @labels;
             my $body = $template-text;
-            my $ping-author = False ?? ‘Ping the module author.’ !! ‘’;
-            my $previous-ticket = $ticket ?? ‘Preivous ticket: #’ ~ $ticket<number> !! ‘’;
+            my $ping-author = $module<author> ?? ‘Ping @’ ~ $module<author> !! ‘’;
+            my $previous-ticket = $ticket ?? ‘Previous ticket: #’ ~ $ticket<number> !! ‘’;
 
             $body .= subst: ‘｢MODULE｣’, $name;
             $body .= subst: ‘｢MODULE-URL｣’, “https://modules.perl6.org/dist/$name”;
