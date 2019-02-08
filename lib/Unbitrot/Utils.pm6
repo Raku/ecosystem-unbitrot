@@ -1,6 +1,6 @@
 use v6;
 
-unit module Utils;
+unit module Unbitrot::Utils;
 
 use Cro::HTTP::Client;
 
