@@ -7,3 +7,4 @@ use Test;
 
 use-ok "Unbitrot::Utils", "Using lib is OK";
 
+done-testing;
