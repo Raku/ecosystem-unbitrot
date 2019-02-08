@@ -34,6 +34,19 @@ sub close-single-issue($url, $token, :$state = 'closed') is export {
     patch( :$url, :$token, body => { :$state } ),
 }
 
+#| Patch an issue
+sub patch(:$url, :$token, :$body ) {
+    my $resp = await Cro::HTTP::Client.patch: $url,
+          headers => [
+              User-Agent => ‘perl6 ecosystem unbitrot’,
+              Authorization => “token $token”,
+                  ],
+          content-type => ‘application/json’,
+          body => $body,
+    ;
+    return await $resp.body;
+}
+
 #| Submit a new issue
 sub submit-issue(:$token, :$title, :$body, :@labels, :$url = url) {
     my %body = %(:$title, :$body, :@labels,);
