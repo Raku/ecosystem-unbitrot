@@ -42,7 +42,7 @@ sub get-issues(:$token, :$url = issues-url) is export {
 }
 
 #| Close/Open an issue
-sub close-single-issue($url, $token, :$state = 'closed') is export {
+sub close-single-issue($url, :$token, :$state = 'closed') is export {
     patch( :$url, :$token, body => { :$state } ),
 }
 
