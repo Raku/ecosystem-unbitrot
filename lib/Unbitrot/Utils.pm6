@@ -4,9 +4,19 @@ unit module Unbitrot::Utils;
 
 use Cro::HTTP::Client;
 
-my $repo = ‘perl6/ecosystem-unbitrot’;
-constant \issues-url = “https://api.github.com/repos/$repo/issues?per_page=60&direction=asc&state=all”;
-constant \submit-url  = “https://api.github.com/repos/$repo/issues”;
+constant repo = ‘perl6/ecosystem-unbitrot’;
+constant \issues-url = “https://api.github.com/repos/{repo}/issues?per_page=60&direction=asc&state=all”;
+constant \submit-url  = “https://api.github.com/repos/{repo}/issues”;
+
+#| Fetches a url
+sub fetch($url) is export {
+    my $resp = await Cro::HTTP::Client.get: $url,
+          headers => [
+              User-Agent => ‘perl6 ecosystem unbitrot’,
+          ],
+    ;
+    return await $resp.body
+}
 
 #| Returns all issues from the repo
 sub get-issues(:$token, :$url = issues-url) is export {
