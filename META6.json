@@ -4,14 +4,14 @@
     "perl" : "6.d",
     "build-depends" : [ ],
     "provides" : {
-        "Unbitrot::Utils" : "lib/Unbitrot/Utils.pm"
+        "Unbitrot::Utils" : "lib/Unbitrot/Utils.pm6"
     },
     "tags" : [
             "Ecosystem", "Unbitrot"
         ],
     "depends" : [
 	"JSON::Fast",
-	"Cro"
+	"cro"
     ],
     "description" : "Utilities for ecosystem unbitrot squashathons",
     "test-depends" : [ ],

@@ -48,7 +48,7 @@ sub patch(:$url, :$token, :$body ) {
 }
 
 #| Submit a new issue
-sub submit-issue(:$token, :$title, :$body, :@labels, :$url = url) {
+sub submit-issue(:$token, :$title, :$body, :@labels, :$url = url) is export {
     my %body = %(:$title, :$body, :@labels,);
 
     use Cro::HTTP::Client;

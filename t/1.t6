@@ -3,29 +3,29 @@
 use v6;
 
 use Test;
-use Utils;
+use Unbitrot::Utils;
 
-ok Utils::url, "{Utils::url} is declared";
+ok Unbitrot::Utils::url, "{Unbitrot::Utils::url} is declared";
 
-my $file = "data/blin-output.txt".IO.e??"data/blin-output.txt"!!"../data/blin-output.txt";
-my @not-ok-modules = modules-not-ok( $file );
-ok @not-ok-modules, "Some modules are not OK";
-my %tickets;
+# my $file = "data/blin-output.txt".IO.e??"data/blin-output.txt"!!"../data/blin-output.txt";
+# my @not-ok-modules = modules-not-ok( $file );
+# ok @not-ok-modules, "Some modules are not OK";
+my @tickets;
 if %*ENV{'GH_TOKEN'} {
     my $token = %*ENV{'GH_TOKEN'};
-    %tickets = get-issues( $token );
-    ok %tickets, "Downloads tickets";
-    cmp-ok %tickets.elems, ">", 1, "There are tickets";
-    my %mapping = issue-per-module( %tickets, @not-ok-modules );
-    ok %mapping, "Mapping done";
-    for %tickets.keys -> $k {
-        say %tickets{$k}<state>;
-    }
-    my @closed-issues = %tickets.keys.grep( { %tickets{$_}<state> eq "closed"} );
-    ok @closed-issues, "Some issues are closed" or skip "No closed issues", 1;
-    my $resp = open-single-issue( @closed-issues[0], $token );
-    ok $resp, "Single issue has been opened";
-    dd $resp;
+    @tickets = get-issues( :$token );
+    ok @tickets, "Downloads tickets";
+    cmp-ok @tickets.elems, ">", 1, "There are tickets";
+    # my %mapping = issue-per-module( %tickets, @not-ok-modules );
+    # ok %mapping, "Mapping done";
+    # for %tickets.keys -> $k {
+    #     say %tickets{$k}<state>;
+    # }
+    # my @closed-issues = %tickets.keys.grep( { %tickets{$_}<state> eq "closed"} );
+    # ok @closed-issues, "Some issues are closed" or skip "No closed issues", 1;
+    # my $resp = open-single-issue( @closed-issues[0], $token );
+    # ok $resp, "Single issue has been opened";
+    # dd $resp;
 } else {
     skip "No token for issues",1;
 }
