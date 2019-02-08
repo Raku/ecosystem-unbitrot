@@ -2,7 +2,7 @@ Module [｢MODULE｣](｢MODULE-URL｣) cannot be installed (`｢BLIN-STATUS｣`
 
 * Tickets are opened/closed in this repo automatically (though not immediately).
 * If you can **install the module without any problems**, add `works for me` label, leave a comment saying that it works for you and mention any details that you feel are important.
-* If it **needs a native library**, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request).
+* If it **needs a native library**, put `native dependency` label, describe what you did to install it and ensure that same instructions are present in the README file of the module (otherwise submit a pull request). Also try to update [this wiki page](https://github.com/perl6/ecosystem-unbitrot/wiki).
 * If the **module is broken**, try to fix it and send a PR. Add `PR sent` label.
 * If there is a **problem in one of the dependencies**, add `failing dependency` label and write a comment explaining the situation. Feel free to work on the corresponding ticket for the failing dependency.
 * It is a good idea to **assign yourself** to this ticket if you're working on it (to make sure two or more people are not working on the same ticket at the same time).
