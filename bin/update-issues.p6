@@ -34,7 +34,7 @@ for %modules.keys.sort -> $name {
             my $title = $name;
             my @labels;
             my $body = $template-text;
-            my $ping-author = False ?? ‘Ping @AlexDaniel or @JJ.’ !! ‘’;
+            my $ping-author = False ?? ‘Ping the module author.’ !! ‘’;
             my $previous-ticket = $ticket ?? ‘Preivous ticket: #’ ~ $ticket<number> !! ‘’;
 
             $body .= subst: ‘｢MODULE｣’, $name;
@@ -44,6 +44,7 @@ for %modules.keys.sort -> $name {
             $body .= subst: ‘｢PING-AUTHOR｣’, $ping-author;
             $body .= subst: ‘｢PREVIOUS-TICKET｣’, $previous-ticket;
 
+	    say $body;
             # submit-issue(:$token, :$title, :$body, :@labels);
 
         }

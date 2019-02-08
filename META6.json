@@ -1,0 +1,23 @@
+{
+    "name" : "Unbitrot::Utils",
+    "source-url" : "git://github.com/perl6/ecosystem-unbitrot",
+    "perl" : "6.d",
+    "build-depends" : [ ],
+    "provides" : {
+        "Unbitrot::Utils" : "lib/Unbitrot/Utils.pm"
+    },
+    "tags" : [
+            "Ecosystem", "Unbitrot"
+        ],
+    "depends" : [
+	"JSON::Fast",
+	"Cro"
+    ],
+    "description" : "Utilities for ecosystem unbitrot squashathons",
+    "test-depends" : [ ],
+    "version" : "0.0.2",
+    "license" : "Perl",
+    "authors" : [
+        "Perl6"
+    ]
+}

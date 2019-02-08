@@ -5,5 +5,5 @@ use v6;
 use Test;
 
 
-use-ok "Utils", "Using lib is OK";
+use-ok "Unbitrot::Utils", "Using lib is OK";
 
