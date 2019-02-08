@@ -39,7 +39,7 @@ for %modules.keys.sort -> $name {
 
             $body .= subst: ‘｢MODULE｣’, $name;
             $body .= subst: ‘｢MODULE-URL｣’, “https://modules.perl6.org/dist/$module”;
-            $body .= subst: ‘｢BLIN-MESSAGE｣’, $module<status>;
+            $body .= subst: ‘｢BLIN-STATUS｣’, $module<status>;
             $body .= subst: ‘｢OUTPUT｣’, $module<output>;
             $body .= subst: ‘｢PING-AUTHOR｣’, $ping-author;
             $body .= subst: ‘｢PREVIOUS-TICKET｣’, $previous-ticket;
