@@ -47,12 +47,12 @@ sub issue-per-module( %tickets, @modules --> Hash ) is export {
 }
 
 #| Edit issue
-sub open-single-issue(:$url, :$token) {
+sub open-single-issue($url, $token) is export {
     patch( :$url, :$token, body => { state => 'open' } );
 }
 
-sub close-single-issue(:$url, :$token) {
-    patch( :$url, :$token, body => { state => 'close' } ),
+sub close-single-issue($url, $token) is export {
+    patch( :$url, :$token, body => { state => 'closed' } ),
 }
 
 #| patch with cro
