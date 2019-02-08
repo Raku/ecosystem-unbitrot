@@ -1,4 +1,4 @@
-Module [$module](https://modules.perl6.org/dist/$module) cannot be
+Module [｢MODULE｣](｢MODULE-URL｣) cannot be
 installed, perhaps it has some failing tests.
 
 * Tickets are opened/closed in this repo automatically (though not
@@ -32,3 +32,5 @@ Output:
 ````````````````````````````````````````````````````````
 
 ｢PING-AUTHOR｣
+
+｢PREVIOUS-TICKET｣
