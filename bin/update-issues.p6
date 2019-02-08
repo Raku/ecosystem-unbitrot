@@ -34,7 +34,7 @@ for %modules.keys.sort -> $name {
             my $title = $name;
             my @labels;
             my $body = $template-text;
-            my $ping-author = False ?? ‘Ping @AlexDaniel.’ !! ‘’;
+            my $ping-author = False ?? ‘Ping @AlexDaniel or @JJ.’ !! ‘’;
             my $previous-ticket = $ticket ?? ‘Preivous ticket: #’ ~ $ticket<number> !! ‘’;
 
             $body .= subst: ‘｢MODULE｣’, $name;
