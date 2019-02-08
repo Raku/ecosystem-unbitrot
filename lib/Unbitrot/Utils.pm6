@@ -1,10 +1,10 @@
-use v6;
+use v6.d;
 
 unit module Unbitrot::Utils;
 
 use Cro::HTTP::Client;
 
-constant \url = “https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?state=all”;
+constant \url = ‘https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?per_page=60&direction=asc&state=all’;
 
 #| gets the issues from the repo
 sub get-issues($token) is export {
@@ -30,12 +30,7 @@ sub get-issues($token) is export {
     %tickets;
 }
 
-#| Returns failing modules
-sub modules-not-ok( $file = "data/blin-output.txt" ) is export {
-    $file.IO.slurp.lines.grep(  / \– \s+ <!before OK>/ ).map( (*.words)[0] );
-}
-
-#! Issue per module
+#| Issue per module
 sub issue-per-module( %tickets, @modules --> Hash ) is export {
     my %issues-by-title = %tickets.keys.map: { %tickets{$_}<title> => $_ };
     my %issue-per-module;
@@ -43,16 +38,11 @@ sub issue-per-module( %tickets, @modules --> Hash ) is export {
         %issue-per-module{$m} = %issues-by-title{$m}:exists??%issues-by-title{$m}!!Nil;
     }
     return %issue-per-module;
-    
 }
 
 #| Edit issue
-sub open-single-issue($url, $token) is export {
-    patch( :$url, :$token, body => { state => 'open' } );
-}
-
-sub close-single-issue($url, $token) is export {
-    patch( :$url, :$token, body => { state => 'closed' } ),
+sub close-single-issue($url, $token, :$state = 'closed') is export {
+    patch( :$url, :$token, body => { :$state } ),
 }
 
 #| patch with cro
@@ -66,6 +56,5 @@ sub patch(:$url, :$token, :$body ) {
           content-type => ‘application/json’,
           body => $body,
     ;
-    
     return await $resp.body;
 }
