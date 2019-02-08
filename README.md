@@ -6,17 +6,14 @@ Here are a few instructions that will help you through the hackathon.
 
 1. Get into the [#perl6 IRC channel](https://perl6.org/irc) to discuss with other people participating in the hackathon, and get updates of what's being done. Every time something is done in the squashathon, a friendly bot will send a message to that channel. You can use it also to coordinate with the rest of the participants, get help and, of course, give help.
 
-2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues). These issues are populated before the squashathon with the modules that are currently failing. Choose one to work on, and follow the instructions presented in that issue. The list includes false positives, so it is OK to use `works for me` label often.
+2. [Check out the issues](https://github.com/perl6/ecosystem-unbitrot/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+-label%3A%22PR+sent%22+-label%3A%22deprecated+module%22+-label%3A%22native+dependency%22). These issues are populated before the squashathon with the modules that are currently failing. Choose one to work on, and follow the instructions presented in that issue. The list includes false positives, so it is OK to use `works for me` label often.
 
 3. When you're done, go to another issue!
 
-## How to choose the issue/module
-
-You can take whichever issue you want, provided someone else has not indicated she's working on it before. But not all failures have the same impact, since not all modules have the same number of dependent distributions *downstream*. This [*river* table indicates how many dependencies every module has](https://github.com/JJ/p6-river/blob/master/data/river-scores.csv), and also if it fails. The higher the score, the higher the impact when it's fixed; also higher the chance some "downriver" modules fail, but only because these "upriver" modules fail to install. There are many modules that fail tests, but by fixing these *upriver* modules the domino effect might make some others to just start working.
 
 ## Tips if you can't get the module to fail
 
-Before assuming the module works fine for you, check that:
+Before assuming the module works fine for you:
 
 #### Check you've set all env vars that enable module's extra tests
 
