@@ -11,7 +11,7 @@ constant \submit-url  = “https://api.github.com/repos/$repo/issues”;
 #| Returns all issues from the repo
 sub get-issues(:$token, :$url = issues-url) is export {
     my @issues;
-    my $cur-url = url;
+    my $cur-url = $url;
     loop {
         note $cur-url;
         my $resp = await Cro::HTTP::Client.get: $cur-url,

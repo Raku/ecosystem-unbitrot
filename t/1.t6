@@ -5,7 +5,7 @@ use v6;
 use Test;
 use Unbitrot::Utils;
 
-ok Unbitrot::Utils::url, "{Unbitrot::Utils::url} is declared";
+ok Unbitrot::Utils::submit-url, "{Unbitrot::Utils::submit-url} is declared";
 
 # my $file = "data/blin-output.txt".IO.e??"data/blin-output.txt"!!"../data/blin-output.txt";
 # my @not-ok-modules = modules-not-ok( $file );
