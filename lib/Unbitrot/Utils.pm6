@@ -4,10 +4,12 @@ unit module Unbitrot::Utils;
 
 use Cro::HTTP::Client;
 
-constant \url = ‘https://api.github.com/repos/perl6/ecosystem-unbitrot/issues?per_page=60&direction=asc&state=all’;
+my $repo = ‘perl6/ecosystem-unbitrot’;
+constant \issues-url = “https://api.github.com/repos/$repo/issues?per_page=60&direction=asc&state=all”;
+constant \submit-url  = “https://api.github.com/repos/$repo/issues”;
 
 #| Returns all issues from the repo
-sub get-issues(:$token, :$url = url) is export {
+sub get-issues(:$token, :$url = issues-url) is export {
     my @issues;
     my $cur-url = url;
     loop {
@@ -48,7 +50,7 @@ sub patch(:$url, :$token, :$body ) {
 }
 
 #| Submit a new issue
-sub submit-issue(:$token, :$title, :$body, :@labels, :$url = url) {
+sub submit-issue(:$token, :$title, :$body, :@labels, :$url = submit-url) {
     my %body = %(:$title, :$body, :@labels,);
 
     use Cro::HTTP::Client;
