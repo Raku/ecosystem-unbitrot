@@ -14,6 +14,8 @@ unit sub MAIN(
 my %modules = from-json slurp $blin-data;
 my @issues = get-issues :$token;
 my $template-text = slurp $template;
+my $module-metadata = fetch ‘https://modules.perl6.org/search.json’;
+
 
 for @issues -> $issue {
     .<ticket> = $issue with %modules{$issue<title>};
@@ -38,9 +40,9 @@ for %modules.keys.sort -> $name {
             my $previous-ticket = $ticket ?? ‘Preivous ticket: #’ ~ $ticket<number> !! ‘’;
 
             $body .= subst: ‘｢MODULE｣’, $name;
-            $body .= subst: ‘｢MODULE-URL｣’, “https://modules.perl6.org/dist/$module”;
+            $body .= subst: ‘｢MODULE-URL｣’, “https://modules.perl6.org/dist/$name”;
             $body .= subst: ‘｢BLIN-STATUS｣’, $module<status>;
-            $body .= subst: ‘｢OUTPUT｣’, $module<output>;
+            $body .= subst: ‘｢OUTPUT｣’, $module<output> || ‘No output’;
             $body .= subst: ‘｢PING-AUTHOR｣’, $ping-author;
             $body .= subst: ‘｢PREVIOUS-TICKET｣’, $previous-ticket;
 
