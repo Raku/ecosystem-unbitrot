@@ -37,7 +37,8 @@ for %modules.keys.sort -> $name {
             $text .= subst: ‘｢OUTPUT｣’, 42;
             $text .= subst: ‘｢PING-AUTHOR｣’, 42;
             $text .= subst: ‘｢PREVIOUS-TICKET｣’, 42;
-
+	    $text .= subst: ‘｢PREVIOUS-TICKET｣’, 42;
+	    $text .= subst: ‘｢BLIN-MESSAGE｣’, 42;
             # submit-issue $token, $text
         }
     }
