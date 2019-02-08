@@ -8,6 +8,7 @@ unit sub MAIN(
     $token,
     IO() :$blin-data = ‘data.json’,
     IO() :$template  = ‘template.md’,
+    :$delay = 5,
 );
 
 
@@ -38,7 +39,8 @@ for %modules.keys.sort -> $name {
     if $module<status> eq ‘OK’ {
         if $ticket and $ticket<state> ne ‘closed’ {
             note “Closing issue {$ticket<number>} for $name”;
-            # close-single-issue $ticket<url>, :$token
+            close-single-issue $ticket<url>, :$token;
+            sleep $delay;
         }
     } else {
         if not $ticket or $ticket<state> eq ‘closed’ {
@@ -57,9 +59,8 @@ for %modules.keys.sort -> $name {
             $body .= subst: ‘｢PING-AUTHOR｣’, $ping-author;
             $body .= subst: ‘｢PREVIOUS-TICKET｣’, $previous-ticket;
 
-	    say $body;
-            # submit-issue(:$token, :$title, :$body, :@labels);
-
+            submit-issue :$token, :$title, :$body, :@labels;
+            sleep $delay;
         }
     }
 }
